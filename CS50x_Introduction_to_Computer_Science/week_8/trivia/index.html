@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Trivia!</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Trivia!</h1>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2>Part 1: Multiple Choice</h2>
+            <hr />
+
+            <h3>Which city is the capital of India?</h3>
+
+            <button class="incorrect" type="button">Bangalore</button>
+            <button class="correct" type="button">New Delhi</button>
+            <button class="incorrect" type="button">Kolkata</button>
+            <button class="incorrect" type="button">Chennai</button>
+            <button class="incorrect" type="button">Lucknow</button>
+
+            <p id="feedback1"></p>
+        </section>
+
+        <section class="section">
+            <h2>Part 2: Free Response</h2>
+            <hr />
+
+            <h3>Which river is the longest river in India?</h3>
+
+            <input type="text" id="river-input" name="river" />
+            <button id="check" type="button">Check</button>
+
+            <p id="feedback2"></p>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Multiple Choice - Capital of India
+            let correctOption = document.querySelector(".correct");
+            let incorrectOptions = document.querySelectorAll(".incorrect");
+            let feedback1 = document.querySelector("#feedback1");
+            let buttons = document.querySelectorAll(".section:first-of-type button");
+
+            function disableButtons() {
+                buttons.forEach(btn => btn.disabled = true);
+            }
+
+            correctOption.addEventListener("click", function() {
+                correctOption.style.backgroundColor = "green";
+                feedback1.innerHTML = "Correct!";
+                disableButtons();
+            });
+
+            incorrectOptions.forEach(btn => {
+                btn.addEventListener("click", function() {
+                    btn.style.backgroundColor = "red";
+                    feedback1.innerHTML = "Incorrect!";
+                    disableButtons();
+                });
+            });
+
+            // Free Response - Longest river in India
+            let input = document.querySelector("#river-input");
+            let feedback2 = document.querySelector("#feedback2");
+            let checkBtn = document.querySelector("#check");
+
+            checkBtn.addEventListener("click", function() {
+                let answer = input.value.trim().toLowerCase();
+
+                // Accept answer "ganga"
+                if (answer === "ganga") {
+                    input.style.backgroundColor = "green";
+                    feedback2.innerHTML = "Correct!";
+                } else {
+                    input.style.backgroundColor = "red";
+                    feedback2.innerHTML = "Incorrect!";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
