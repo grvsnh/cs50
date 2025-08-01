@@ -1,0 +1,36 @@
+{% extends "layout.html" %} {% block title %} Buy {% endblock %} {% block main
+%}
+<h1>Buy Stocks</h1>
+<form
+  action="{{ url_for('buy') }}"
+  method="post"
+  class="mx-auto"
+  style="max-width: 400px"
+>
+  <div class="mb-3">
+    <label for="symbol" class="form-label">Stock Symbol</label>
+    <input
+      type="text"
+      name="symbol"
+      id="symbol"
+      autofocus
+      placeholder="e.g., AAPL"
+      class="form-control"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="shares" class="form-label">Number of Shares</label>
+    <input
+      type="number"
+      name="shares"
+      id="shares"
+      placeholder="e.g., 10"
+      min="1"
+      class="form-control"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary w-100">Buy</button>
+</form>
+{% endblock %}
