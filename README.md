@@ -4,6 +4,15 @@
   <i>Documenting my learning journey through CS50x and CS50P</i>
 </p>
 
+<p align="center">
+  <a href="https://github.com/grvsnh/cs50/blob/main/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <img alt="Languages Used" src="https://img.shields.io/github/languages/count/grvsnh/cs50?color=blue" />
+  <img alt="Repo Status" src="https://img.shields.io/badge/status-In_Progress-orange.svg" />
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/grvsnh/cs50" />
+</p>
+
 ---
 
 ## 📚 Courses Covered
@@ -25,7 +34,7 @@
 │   ├── Week1/
 │   ├── ...
 │   └── Week9/
-└── 📂 CS50s\_Introduction\_to\_Programming\_with\_Python/
+└── 📂 CS50’s\_Introduction\_to\_Programming\_with\_Python/
 ├── Week0/
 ├── Week1/
 ├── ...
