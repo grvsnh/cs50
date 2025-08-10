@@ -10,7 +10,7 @@ def main():
     except ValueError:
         sys.exit("Command-line argument is not a number")
 
-    API_KEY = "a9f18a15f6930ae513f645006b3c666789653f5ce40d260551c6a0d8b13ea8d6"
+    API_KEY = "YOUR_API_KEY" #Replace with your own API key
     url = "https://rest.coincap.io/v3/assets/bitcoin"
 
     headers = {
