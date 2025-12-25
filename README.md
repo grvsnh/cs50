@@ -17,10 +17,10 @@
 
 ## 📚 Courses Covered
 
-| Course | Description |
-|--------|-------------|
-| 🎓 [**CS50x: Introduction to Computer Science**](https://github.com/grvsnh/cs50/tree/main/CS50x_Introduction_to_Computer_Science) | Core computer science concepts (C, memory, algorithms, web, Python) |
-| 🐍 [**CS50P: Introduction to Programming with Python**](https://github.com/grvsnh/cs50/tree/main/CS50%E2%80%99s_Introduction_to_Programming_with_Python) | Python fundamentals, functions, libraries, testing, and more |
+| Course                                                                                                                                                   | Description                                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 🎓 [**CS50x: Introduction to Computer Science**](https://github.com/grvsnh/cs50/tree/main/CS50x_Introduction_to_Computer_Science)                        | Core computer science concepts (C, memory, algorithms, web, Python) |
+| 🐍 [**CS50P: Introduction to Programming with Python**](https://github.com/grvsnh/cs50/tree/main/CS50%E2%80%99s_Introduction_to_Programming_with_Python) | Python fundamentals, functions, libraries, testing, and more        |
 
 ---
 
@@ -38,7 +38,7 @@
 ├── Week0/
 ├── Week1/
 ├── ...
-└── Week8/
+└── Week9/
 
 ```
 
