@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Suite</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/anime.min.js') }}"></script>
+</head>
+<body>
+  <div class="single-page-app">
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <span id="current-date-text">Today</span>
+      </div>
+      <div class="top-bar-center">
+        <span class="live-clock" id="live-clock-digits">00:00 AM</span>
+      </div>
+      <div class="top-bar-right">
+        <button class="mono-btn mono-btn-icon-only" id="settings-toggle-btn" aria-label="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="single-page-grid">
+      <div class="timer-section">
+        <div class="mono-card timer-card">
+          <div class="card-header center-header">
+            <span class="mono-badge">FOCUS SESSION</span>
+          </div>
+
+          <div class="timer-mode-group">
+            <button class="timer-tab-btn active" data-mode="work">25m Focus</button>
+            <button class="timer-tab-btn" data-mode="short">5m Break</button>
+            <button class="timer-tab-btn" data-mode="long">15m Break</button>
+            <button class="timer-tab-btn" id="custom-toggle-btn">Custom</button>
+          </div>
+
+          <div class="custom-timer-box" id="custom-timer-box" style="display: none;">
+            <div class="custom-input-group">
+              <div class="custom-time-unit">
+                <input type="number" id="custom-hours-input" class="mono-input custom-input" value="0" min="0" max="23" placeholder="0">
+                <span class="min-unit">h</span>
+              </div>
+              <div class="custom-time-unit">
+                <input type="number" id="custom-minutes-input" class="mono-input custom-input" value="25" min="0" max="59" placeholder="25">
+                <span class="min-unit">m</span>
+              </div>
+              <div class="custom-time-unit">
+                <input type="number" id="custom-seconds-input" class="mono-input custom-input" value="0" min="0" max="59" placeholder="0">
+                <span class="min-unit">s</span>
+              </div>
+              <button class="mono-btn mono-btn-sm mono-btn-primary" id="apply-custom-time">Set</button>
+            </div>
+          </div>
+
+          <div class="timer-ring-wrapper">
+            <svg class="timer-svg" viewBox="0 0 300 300">
+              <circle class="timer-ring-bg" cx="150" cy="150" r="135"></circle>
+              <circle class="timer-ring-progress" id="timer-progress-ring" cx="150" cy="150" r="135"></circle>
+            </svg>
+            <div class="timer-digits" id="timer-digits">25:00</div>
+          </div>
+
+          <div class="timer-controls">
+            <button class="mono-btn mono-btn-start mono-btn-hero" id="timer-start">▶ Start</button>
+            <button class="mono-btn mono-btn-pause mono-btn-hero" id="timer-pause" style="display: none;">⏸ Pause</button>
+            <button class="mono-btn mono-btn-outline mono-btn-hero" id="timer-reset">↺ Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="widgets-section">
+        <div class="mono-card widget-card">
+          <div class="card-header">
+            <span class="card-title">Priority Tasks</span>
+            <span class="widget-count" id="stat-completed-tasks">0/0</span>
+          </div>
+
+          <form id="dash-goal-form" class="inline-form">
+            <input type="text" id="dash-goal-input" class="mono-input input-lg" placeholder="Add priority task..." required>
+            <button type="submit" class="mono-btn mono-btn-primary mono-btn-icon">+</button>
+          </form>
+
+          <div id="dash-goals-list" class="compact-list"></div>
+        </div>
+
+        <div class="mono-card widget-card">
+          <div class="card-header">
+            <span class="card-title">Daily Habits</span>
+            <span class="widget-count" id="stat-max-streak">0 Days</span>
+          </div>
+
+          <form id="dash-habit-form" class="inline-form">
+            <input type="text" id="dash-habit-input" class="mono-input input-lg" placeholder="Add daily habit..." required>
+            <button type="submit" class="mono-btn mono-btn-primary mono-btn-icon">+</button>
+          </form>
+
+          <div id="dash-habits-list" class="compact-list"></div>
+        </div>
+      </div>
+    </main>
+
+    <div class="modal-backdrop" id="settings-modal" style="display: none;">
+      <div class="mono-card modal-card">
+        <div class="card-header">
+          <span class="card-title">Workspace Settings</span>
+          <button class="mono-btn mono-btn-icon-only" id="close-settings-btn" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="settings-group">
+          <div class="setting-toggle-row">
+            <div>
+              <div class="setting-title">Show Clock Seconds</div>
+              <div class="setting-desc">Display live seconds in header clock</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-show-seconds">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div>
+            <label class="setting-label">Default Focus Time (Minutes)</label>
+            <input type="number" id="setting-work-time" class="mono-input" value="25" min="1" max="180">
+          </div>
+
+          <div>
+            <label class="setting-label">Default Break Time (Minutes)</label>
+            <input type="number" id="setting-short-time" class="mono-input" value="5" min="1" max="60">
+          </div>
+
+          <div class="settings-actions">
+            <button class="mono-btn mono-btn-primary" id="save-settings-btn" style="flex: 1;">Save Settings</button>
+            <button class="mono-btn mono-btn-outline" id="reset-data-btn">Reset All</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
