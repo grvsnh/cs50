@@ -1,5 +1,5 @@
 # FOCUS SUITE
-#### Video Demo: <YOUR_YOUTUBE_VIDEO_URL_HERE>
+#### Video Demo: <To be Added>
 #### Description:
 
 Focus Suite is a minimal, single-page, non-scrolling task management and focus productivity application built with Python (Flask), SQLite, HTML5, CSS3, and modern vanilla JavaScript powered by `anime.js`. Designed explicitly to combat digital distractions, Focus Suite replaces bloated, complex dashboard interfaces with a single, highly refined viewport workspace that unifies an adaptable Pomodoro/custom focus timer, priority goal management, and daily habit tracking.
